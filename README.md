@@ -21,3 +21,4 @@ Use `--length n` for lengths longer than 1. For example, `--length 2` would prod
 - Design/document a library
 - Parse CSV and other formats
 - Unit tests
+- "Exhaustive" result with 'A' and 'Z' as the first and last lettters.
