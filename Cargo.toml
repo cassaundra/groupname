@@ -1,7 +1,8 @@
 [package]
-name = "namesort"
+name = "groupname"
 version = "0.1.0"
 authors = ["Cassaundra <cass@cassaundra.io>"]
 edition = "2018"
 
 [dependencies]
+clap = "2.32.0"

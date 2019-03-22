@@ -1,4 +1,4 @@
-# namesort
+# groupname
 
 Sort a list of names into groups with as equal length as possible.
 
@@ -11,10 +11,13 @@ Example output:
 
 ## Usage
 
-To build and run, use `cargo run --release -- names.txt`. Or, run a compiled binary with `namesort names.txt`.
+To build and run, use `cargo run --release -- names.txt`. Or, run a compiled binary with `groupname names.txt`.
 
 Use `--length n` for lengths longer than 1. For example, `--length 2` would produce buckets like `[Ic-Qu]`.
 
 ## TODO
 
-- Output to formats nice for piping.
+- Piping support
+- Design/document a library
+- Parse CSV and other formats
+- Unit tests
