@@ -1,6 +1,6 @@
 # groupname
 
-Sort a list of names into groups with as equal length as possible.
+Group a list of names as evenly as possible.
 
 Example output:
 ```
