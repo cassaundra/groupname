@@ -30,7 +30,7 @@ fn main() {
 	// TODO validate length >= 1 and buckets >= 1
 	// TODO move this into lib
 
-	let buckets = sort_into_buckets_from_file(file, buckets, length);
+	let buckets = sort_into_buckets_from_file(file, buckets, length).unwrap();
 
 	buckets.into_iter().for_each(|b| {
 		pretty_print_bucket(&b);

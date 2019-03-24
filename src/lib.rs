@@ -25,16 +25,15 @@ pub fn sort_into_buckets(prefixes: &Vec<String>, num_buckets: usize) -> Vec<Buck
 	let mut buckets: Vec<Vec<String>> = std::iter::repeat(vec![]).take(num_buckets).collect::<Vec<_>>();
 
 	let avg_bucket_size = prefixes.len() / num_buckets;
-	let extra = prefixes.len() - avg_bucket_size * num_buckets;
+	let surplus = prefixes.len() - avg_bucket_size * num_buckets;
 
 	let mut iter = prefixes.into_iter();
 
 	for i in 0..num_buckets {
 		// use average bucket size, and add an extra if needed
-		let extra: usize = (i < extra) as usize;
+		let extra: usize = (i < surplus) as usize;
 		let size = avg_bucket_size + extra;
 
-		// take next
 		for _ in 0..size {
 			buckets[i].push(iter.next().unwrap());
 		}
@@ -46,24 +45,16 @@ pub fn sort_into_buckets(prefixes: &Vec<String>, num_buckets: usize) -> Vec<Buck
 		}).collect::<Vec<Bucket>>()
 }
 
-pub fn sort_into_buckets_from_file(file: &str, num_buckets: usize, prefix_length: usize) -> Vec<Bucket> {
-	let file = File::open(file);
-	let file = match file {
-		Ok(file) => file,
-		Err(error) => match error.kind() {
-			ErrorKind::NotFound => {
-				panic!("File not found")
-			}
-			other_error => panic!("A problem occurred when opening the file: {:?}", other_error)
-		}
-	};
+pub fn sort_into_buckets_from_file(file: &str, num_buckets: usize, prefix_length: usize) -> std::io::Result<Vec<Bucket>> {
+	let file = File::open(file)?;
 	let file = BufReader::new(&file);
 
+	// extract prefixes from each line with non-whitespace characters
 	let prefixes = file.lines().filter_map(|line| {
 		extract_prefix(line.unwrap(), prefix_length)
 	}).collect();
 
-	sort_into_buckets(&prefixes, num_buckets)
+	Ok(sort_into_buckets(&prefixes, num_buckets))
 }
 
 pub fn extract_prefix(line: String, prefix_length: usize) -> Option<String> {
