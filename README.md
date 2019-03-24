@@ -1,6 +1,6 @@
 # groupname
 
-Group a list of names as evenly as possible.
+`groupname` is a tool and a library that groups a list of names as evenly as possible. I originally needed this for some volunteer work I was doing at a music camp and decided to just make it open source.
 
 Example output:
 ```
@@ -11,7 +11,7 @@ Example output:
 
 ## Usage
 
-To build and run, use `cargo run --release -- names.txt 3`. Or, run a compiled binary with `groupname names.txt`.
+To build and run, use `cargo run --release -- names.txt 3`. Or, run a compiled binary with `groupname names.txt 3`. For a rough benchmark, the names.txt file takes ~2ms on my laptop.
 
 Use `--length n` for lengths longer than 1. For example, `--length 2` would produce buckets like `[Ic-Qu]`.
 
