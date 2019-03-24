@@ -1,5 +1,5 @@
 use clap::{App, Arg, crate_name, crate_authors, crate_description, crate_version, value_t};
-use crate::lib::{sort_into_buckets_from_file, pretty_print_bucket};
+use crate::lib::group_names_from_file;
 
 mod lib;
 
@@ -28,11 +28,10 @@ fn main() {
 	let length: usize = value_t!(matches, "length", usize).unwrap_or(1);
 
 	// TODO validate length >= 1 and buckets >= 1
-	// TODO move this into lib
 
-	let buckets = sort_into_buckets_from_file(file, buckets, length).unwrap();
+	let buckets = group_names_from_file(file, buckets, length).unwrap();
 
 	buckets.into_iter().for_each(|b| {
-		pretty_print_bucket(&b);
+		println!("[{}-{}] (size: {})", b.begin_str, b.end_str, b.size);
 	});
 }

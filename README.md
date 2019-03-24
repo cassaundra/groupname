@@ -4,9 +4,9 @@ Group a list of names as evenly as possible.
 
 Example output:
 ```
-[A-H] (8 letters, 16 occurrences)
-[I-Q] (9 letters, 15 occurrences)
-[R-Z] (10 letters, 16 occurrences)
+[A-E] (size: 1649)
+[E-M] (size: 1648)
+[M-Z] (size: 1648)
 ```
 
 ## Usage
